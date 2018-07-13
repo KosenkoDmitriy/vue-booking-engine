@@ -1,12 +1,11 @@
 import Vue from 'vue'
 import App from './App.vue'
-// import App1 from './App1.vue'
 
 Vue.config.productionTip = false
 
-new Vue({
-  render: h => h(App)
-}).$mount('#app')
+// new Vue({
+//   render: h => h(App)
+// }).$mount('#app')
 
 // var app = new Vue({
 //   el: '#app',
@@ -15,7 +14,7 @@ new Vue({
 //   }
 // })
 
-// var app = new Vue({
-//   el: '#app',
-//   render: h => h(App1)
-// })
+var app = new Vue({
+  el: '#app',
+  render: h => h(App)
+})

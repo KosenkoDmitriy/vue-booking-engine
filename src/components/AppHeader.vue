@@ -1,11 +1,9 @@
 <template>
-  <ol>
-    <li>Nav</li>
-  </ol>
+  <div>Logo</div>
 </template>
 <script>
 export default {
-  name: 'Nav',
+  name: 'AppHeader',
   props: {
 
   }
