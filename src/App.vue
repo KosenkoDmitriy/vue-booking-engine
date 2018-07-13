@@ -1,5 +1,5 @@
 <template>
-  <v-app dark id="app">
+  <v-app id="app">
     <app-header></app-header>
     <app-content>
       <app-nav id="nav"></app-nav>
@@ -9,13 +9,13 @@
 
 <script>
 import AppHeader from './components/AppHeader.vue'
-import AppNav from './components/AppNav.vue'
+// import AppNav from './components/AppNav.vue'
 import AppContent from './components/AppContent.vue'
 export default {
   name: 'app',
   components: {
     AppHeader,
-    AppNav,
+    // AppNav,
     AppContent
   }
 }
