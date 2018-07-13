@@ -1,10 +1,10 @@
 <template>
-  <div id="app">
+  <v-app dark id="app">
     <app-header></app-header>
     <app-content>
       <app-nav id="nav"></app-nav>
     </app-content>
-  </div>
+  </v-app>
 </template>
 
 <script>
