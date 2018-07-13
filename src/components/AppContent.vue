@@ -40,6 +40,25 @@
 
 
        <v-list three-line>
+         <!-- <v-subheader
+           v-if="isExtraVisible"
+         >
+           visible
+           <v-btn v-on:click="isExtraVisible = false">Done</v-btn>
+         </v-subheader> -->
+         <extra-table v-if="isExtraVisible" isExtraVisible="False">
+             <v-toolbar flat color="white">
+               <v-toolbar-title>Adding Extras</v-toolbar-title>
+               <v-divider
+                 class="mx-2"
+                 inset
+                 vertical
+               ></v-divider>
+               <v-spacer></v-spacer>
+                 <v-btn v-on:click="isExtraVisible = false">Done</v-btn>
+             </v-toolbar>
+         </extra-table>
+
          <template v-for="(item, index) in items">
            <v-subheader
              v-if="item.header"
@@ -70,7 +89,7 @@
                <v-list-tile-sub-title v-html="item.subtitle"></v-list-tile-sub-title>
              </v-list-tile-content>
              <v-list-tile-action>
-               <v-btn :color="item.active ? 'teal' : 'blue'">Add Extras</v-btn>
+               <v-btn v-on:click="isExtraVisible = true" :color="item.active ? 'teal' : 'blue'">Add Extras</v-btn>
                <v-list-tile-sub-title>Room Hire Cost-Half Day: $300</v-list-tile-sub-title>
                <v-list-tile-sub-title>Extras: - </v-list-tile-sub-title>
                <v-list-tile-title>Total: $300</v-list-tile-title>
@@ -129,13 +148,18 @@
 </template>
 
 <script>
+import ExtraTable from './ExtraTable.vue'
 
 export default {
   name: 'AppContent',
+  components: {
+    ExtraTable
+  },
   data () {
       return {
         eventList: ['Meeting', 'Wedding'],
         buildList: ['Theater',],
+        isExtraVisible: false,
         e1: 0,
         items: [
           // { header: 'Today' },
