@@ -1,7 +1,6 @@
 <template>
 <v-content>
 <v-container fluid>
-  <router-view></router-view>
   <v-stepper v-model="e1">
     <v-stepper-header>
       <v-stepper-step :complete="e1 > 1" step="1">Event Details</v-stepper-step>
@@ -38,28 +37,11 @@
             </v-flex>
           </v-layout>
 
-
        <v-list three-line>
-         <!-- <v-subheader
-           v-if="isExtraVisible"
-         >
-           visible
-           <v-btn v-on:click="isExtraVisible = false">Done</v-btn>
-         </v-subheader> -->
-         <extra-table v-if="isExtraVisible" isExtraVisible="False">
-             <v-toolbar flat color="white">
-               <v-toolbar-title>Adding Extras</v-toolbar-title>
-               <v-divider
-                 class="mx-2"
-                 inset
-                 vertical
-               ></v-divider>
-               <v-spacer></v-spacer>
-                 <v-btn v-on:click="isExtraVisible = false">Done</v-btn>
-             </v-toolbar>
-         </extra-table>
-
          <template v-for="(item, index) in items">
+           <extra-table
+            v-bind:isExtraVisible=false :key="'et'+index">
+           </extra-table>
            <v-subheader
              v-if="item.header"
              :key="item.header"
@@ -68,7 +50,7 @@
            </v-subheader>
 
            <v-divider
-             v-else-if="item.divider"
+             v-if="item.divider"
              :inset="item.inset"
              :key="index"
            ></v-divider>
@@ -79,22 +61,24 @@
              avatar
              @click=""
            >
+
              <v-list-tile-avatar>
-               <img :src="item.avatar" ><!--  style="height:100px;width:100px;"> -->
+               <img :src="item.avatar">
              </v-list-tile-avatar>
 
              <v-list-tile-content>
+
                <v-list-tile-title v-html="item.title"></v-list-tile-title>
                <v-list-tile-sub-title v-html="item.subtitle"></v-list-tile-sub-title>
                <v-list-tile-sub-title v-html="item.subtitle"></v-list-tile-sub-title>
              </v-list-tile-content>
              <v-list-tile-action>
-               <v-btn v-on:click="isExtraVisible = true" :color="item.active ? 'teal' : 'blue'">Add Extras</v-btn>
+
+               <!-- <v-btn v-on:click="isExtraVisible = true" :color="item.active ? 'teal' : 'blue'">Hold</v-btn> -->
                <v-list-tile-sub-title>Room Hire Cost-Half Day: $300</v-list-tile-sub-title>
                <v-list-tile-sub-title>Extras: - </v-list-tile-sub-title>
                <v-list-tile-title>Total: $300</v-list-tile-title>
                <v-btn :color="item.active ? 'teal' : 'green'">Book And Confirm</v-btn>
-               <!-- <v-btn :color="item.active ? 'teal' : 'blue'">Hold</v-btn> -->
             </v-list-tile-action>
            </v-list-tile>
          </template>
@@ -158,8 +142,7 @@ export default {
   data () {
       return {
         eventList: ['Meeting', 'Wedding'],
-        buildList: ['Theater',],
-        isExtraVisible: false,
+        buildList: ['Theater', 'Restaurant', 'Office', 'Flat'],
         e1: 0,
         items: [
           // { header: 'Today' },

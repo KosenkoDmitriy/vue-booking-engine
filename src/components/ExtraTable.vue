@@ -1,6 +1,18 @@
 <template>
-  <div>
-  <slot></slot>
+  <div class="text-xs-center">
+    <v-btn v-on:click="isExtraVisible = !isExtraVisible" :color="'blue'">Add Extras</v-btn>
+
+  <div id="extra_table" v-if="isExtraVisible">
+    <v-toolbar flat color="white">
+      <v-toolbar-title>Adding Extras</v-toolbar-title>
+      <v-divider
+        class="mx-2"
+        inset
+        vertical
+      ></v-divider>
+      <v-spacer></v-spacer>
+        <v-btn v-on:click="isExtraVisible = false">Done</v-btn>
+    </v-toolbar>
   <v-data-table
     :headers="headers"
     :items="desserts"
@@ -16,17 +28,24 @@
       <td class="text-xs-right">{{ props.item.iron }}</td>
     </template>
   </v-data-table>
-  </div>
+</div>
+
+</div>
 </template>
 
 <script>
   export default {
     name: "ExtraTable",
+    // props: [
+    //   'isExtraVisible'
+    // ],
+    props: {
+      isExtraVisible: Boolean,
+    },
+
     data () {
       return {
-        props: {
-          isExtraVisible: Boolean
-        },
+        // isExtraVisible: this.isExtraVisible,
         headers: [
           {
             text: 'Dessert (100g serving)',
@@ -67,69 +86,6 @@
             carbs: 23,
             protein: 6.0,
             iron: '7%'
-          },
-          {
-            value: false,
-            name: 'Cupcake',
-            calories: 305,
-            fat: 3.7,
-            carbs: 67,
-            protein: 4.3,
-            iron: '8%'
-          },
-          {
-            value: false,
-            name: 'Gingerbread',
-            calories: 356,
-            fat: 16.0,
-            carbs: 49,
-            protein: 3.9,
-            iron: '16%'
-          },
-          {
-            value: false,
-            name: 'Jelly bean',
-            calories: 375,
-            fat: 0.0,
-            carbs: 94,
-            protein: 0.0,
-            iron: '0%'
-          },
-          {
-            value: false,
-            name: 'Lollipop',
-            calories: 392,
-            fat: 0.2,
-            carbs: 98,
-            protein: 0,
-            iron: '2%'
-          },
-          {
-            value: false,
-            name: 'Honeycomb',
-            calories: 408,
-            fat: 3.2,
-            carbs: 87,
-            protein: 6.5,
-            iron: '45%'
-          },
-          {
-            value: false,
-            name: 'Donut',
-            calories: 452,
-            fat: 25.0,
-            carbs: 51,
-            protein: 4.9,
-            iron: '22%'
-          },
-          {
-            value: false,
-            name: 'KitKat',
-            calories: 518,
-            fat: 26.0,
-            carbs: 65,
-            protein: 7,
-            iron: '6%'
           }
         ]
       }
