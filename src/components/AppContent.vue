@@ -40,7 +40,7 @@
        <v-list three-line>
          <template v-for="(item, index) in items">
            <extra-table
-            v-bind:isExtraVisible=false :key="'et'+index">
+            v-bind:isVisible=false v-on:calculateTotal="calculateTotalSum" :key="'et'+index">
            </extra-table>
            <v-subheader
              v-if="item.header"
@@ -77,7 +77,7 @@
                <!-- <v-btn v-on:click="isExtraVisible = true" :color="item.active ? 'teal' : 'blue'">Hold</v-btn> -->
                <v-list-tile-sub-title>Room Hire Cost-Half Day: $300</v-list-tile-sub-title>
                <v-list-tile-sub-title>Extras: - </v-list-tile-sub-title>
-               <v-list-tile-title>Total: $300</v-list-tile-title>
+               <v-list-tile-title>Total: ${{total}}</v-list-tile-title>
                <v-btn :color="item.active ? 'teal' : 'green'">Book And Confirm</v-btn>
             </v-list-tile-action>
            </v-list-tile>
@@ -133,14 +133,22 @@
 
 <script>
 import ExtraTable from './ExtraTable.vue'
-
+var total = -1;
 export default {
   name: 'AppContent',
   components: {
     ExtraTable
   },
+  methods: {
+    calculateTotalSum(sum) {
+      this.total = sum;
+      alert(sum);
+    }
+  },
   data () {
       return {
+        // total,
+        total: -1,
         eventList: ['Meeting', 'Wedding'],
         buildList: ['Theater', 'Restaurant', 'Office', 'Flat'],
         e1: 0,

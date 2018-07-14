@@ -11,7 +11,7 @@
         vertical
       ></v-divider>
       <v-spacer></v-spacer>
-        <v-btn v-on:click="isExtraVisible = false">Done</v-btn>
+        <v-btn v-on:click="calculateTotalSum(total)">Done</v-btn>
     </v-toolbar>
   <v-data-table
     :headers="headers"
@@ -20,12 +20,23 @@
     class="elevation-1"
   >
     <template slot="items" slot-scope="props">
-      <td>{{ props.item.name }}</td>
-      <td class="text-xs-right">{{ props.item.calories }}</td>
-      <td class="text-xs-right">{{ props.item.fat }}</td>
-      <td class="text-xs-right">{{ props.item.carbs }}</td>
-      <td class="text-xs-right">{{ props.item.protein }}</td>
-      <td class="text-xs-right">{{ props.item.iron }}</td>
+      <td>
+        <v-checkbox
+          v-model="props.selected"
+          primary
+          hide-details
+        ></v-checkbox>
+      </td>
+      <td class="text-xs-right">{{ props.item.name }}</td>
+      <td class="text-xs-right">{{ props.item.quantity }}</td>
+      <td class="text-xs-right">{{ props.item.unit_price }}</td>
+      <td class="text-xs-right">{{ props.item.cost }}</td>
+      <td class="text-xs-right">${{ total = props.item.quantity * props.item.cost  }}</td>
+    </template>
+    <template slot="footer">
+      <td colspan="100%" class="text-xs-right">
+        <strong>Total: </strong>
+      </td>
     </template>
   </v-data-table>
 </div>
@@ -34,18 +45,32 @@
 </template>
 
 <script>
+var total = 0;
+var isExtraVisible = false;
+
   export default {
+
     name: "ExtraTable",
+    // isExtraVisible: this.isVisible,
     // props: [
     //   'isExtraVisible'
     // ],
     props: {
-      isExtraVisible: Boolean,
+      isVisible: Boolean,
+      // total: Number,
     },
-
+    methods: {
+      calculateTotalSum: function() {
+        this.isExtraVisible = !this.isExtraVisible;
+        // генерируем событие 'remove' и передаём id элемента
+        this.$emit('calculateTotal', this.total);
+      }
+    },
     data () {
       return {
-        // isExtraVisible: this.isExtraVisible,
+        total,
+        isExtraVisible: this.isVisible,
+
         headers: [
           {
             text: 'Dessert (100g serving)',
@@ -53,39 +78,58 @@
             sortable: false,
             value: 'name'
           },
-          { text: 'Calories', value: 'calories' },
-          { text: 'Fat (g)', value: 'fat' },
-          { text: 'Carbs (g)', value: 'carbs' },
-          { text: 'Protein (g)', value: 'protein' },
-          { text: 'Iron (%)', value: 'iron' }
+          { text: 'Quantity', value: 'calories' },
+          { text: 'Unit Price', value: 'fat' },
+          { text: 'Cost', value: 'carbs' },
+          { text: 'Total', value: 'protein' },
         ],
         desserts: [
           {
             value: false,
-            name: 'Frozen Yogurt',
-            calories: 159,
-            fat: 6.0,
-            carbs: 24,
-            protein: 4.0,
-            iron: '1%'
+            name: 'The Precinct Package',
+            quantity: 1,
+            unit_price: '-',
+            cost: 300,
           },
           {
             value: false,
-            name: 'Ice cream sandwich',
-            calories: 237,
-            fat: 9.0,
-            carbs: 37,
-            protein: 4.3,
-            iron: '1%'
+            name: 'The Day Delegate Package',
+            quantity: 1,
+            unit_price: '-',
+            cost: 200,
           },
           {
             value: false,
-            name: 'Eclair',
-            calories: 262,
-            fat: 16.0,
-            carbs: 23,
-            protein: 6.0,
-            iron: '7%'
+            name: 'Tea And Coffee',
+            quantity: 10,
+            unit_price: '-',
+            cost: 10,
+          },
+          {
+            value: false,
+            name: 'Polycom',
+            quantity: 1,
+            unit_price: '-',
+            cost: 50,
+          },
+          {
+            value: false,
+            name: 'Projector and Screen',
+            quantity: 1,
+            unit_price: '-',
+            cost: 50,
+          },
+          {
+            name: 'FlipChart',
+            quantity: 1,
+            unit_price: '-',
+            cost: 50,
+          },
+          {
+            name: 'Whiteboard',
+            quantity: 1,
+            unit_price: '-',
+            cost: 50,
           }
         ]
       }
