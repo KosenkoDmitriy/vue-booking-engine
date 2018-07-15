@@ -33,51 +33,10 @@
                 ></v-select>
             </v-flex>
             <v-flex xs12 sm6 md4>
-              <v-menu
-                ref="menu"
-                :close-on-content-click="false"
-                v-model="menu"
-                :nudge-right="40"
-                :return-value.sync="date"
-                lazy
-                transition="scale-transition"
-                offset-y
-                full-width
-                min-width="290px"
-              >
-                <v-text-field
-                  slot="activator"
-                  v-model="date"
-                  label="Select Date"
-                  prepend-icon="event"
-                  readonly
-                ></v-text-field>
-                <v-date-picker v-model="date" @input="$refs.menu.save(date)"></v-date-picker>
-              </v-menu>
+              <date-picker></date-picker>
             </v-flex>
             <v-flex xs12 sm6 md4>
-              <v-menu
-                ref="menu2"
-                :close-on-content-click="false"
-                v-model="menu2"
-                :nudge-right="40"
-                :return-value.sync="time"
-                lazy
-                transition="scale-transition"
-                offset-y
-                full-width
-                max-width="290px"
-                min-width="290px"
-              >
-              <v-text-field
-                slot="activator"
-                v-model="time"
-                label="Select Time"
-                prepend-icon="access_time"
-                readonly
-              ></v-text-field>
-              <v-time-picker v-model="time" @change="$refs.menu2.save(time)"></v-time-picker>
-            </v-menu>
+              <time-picker></time-picker>
           </v-flex>
           <v-spacer></v-spacer>
 
@@ -197,10 +156,14 @@
 
 <script>
 import ExtraTable from './ExtraTable.vue'
+import DatePicker from './DatePicker.vue'
+import TimePicker from './TimePicker.vue'
 export default {
   name: 'AppContent',
   components: {
-    ExtraTable
+    ExtraTable,
+    DatePicker,
+    TimePicker,
   },
   methods: {
     calculateTotalSum(id, total) {
@@ -213,17 +176,6 @@ export default {
   },
   data () {
       return {
-        //start date Picker
-        date: null,
-        menu: false,
-        modal: false,
-        // menu2: false,
-        //end date Picker
-        //start time picker
-        time: null,
-        menu2: false,
-        modal2: false,
-        //end time picker
         eventList: ['Banquet', 'Cocktail', 'Conference', 'Meeting', 'Wedding'],
         buildList: [ 'Cafe', 'Theater', 'Restaurant', 'Office', 'Flat'],
         e1: 0,
