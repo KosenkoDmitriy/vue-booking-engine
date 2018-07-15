@@ -34,9 +34,9 @@
             </v-flex>
             <v-flex xs12 sm6 md4>
               <v-menu
-                ref="menu2"
+                ref="menu"
                 :close-on-content-click="false"
-                v-model="menu2"
+                v-model="menu"
                 :nudge-right="40"
                 :return-value.sync="date"
                 lazy
@@ -52,34 +52,34 @@
                   prepend-icon="event"
                   readonly
                 ></v-text-field>
-                <v-date-picker v-model="date" @input="$refs.menu2.save(date)"></v-date-picker>
+                <v-date-picker v-model="date" @input="$refs.menu.save(date)"></v-date-picker>
               </v-menu>
             </v-flex>
-            <v-flex xs11 sm5>
-      <v-menu
-        ref="menu"
-        :close-on-content-click="false"
-        v-model="menu2"
-        :nudge-right="40"
-        :return-value.sync="time"
-        lazy
-        transition="scale-transition"
-        offset-y
-        full-width
-        max-width="290px"
-        min-width="290px"
-      >
-        <v-text-field
-          slot="activator"
-          v-model="time"
-          label="Picker in menu"
-          prepend-icon="access_time"
-          readonly
-        ></v-text-field>
-        <v-time-picker v-model="time" @change="$refs.menu.save(time)"></v-time-picker>
-      </v-menu>
-    </v-flex>
-    <v-spacer></v-spacer>
+            <v-flex xs12 sm6 md4>
+              <v-menu
+                ref="menu2"
+                :close-on-content-click="false"
+                v-model="menu2"
+                :nudge-right="40"
+                :return-value.sync="time"
+                lazy
+                transition="scale-transition"
+                offset-y
+                full-width
+                max-width="290px"
+                min-width="290px"
+              >
+              <v-text-field
+                slot="activator"
+                v-model="time"
+                label="Select Time"
+                prepend-icon="access_time"
+                readonly
+              ></v-text-field>
+              <v-time-picker v-model="time" @change="$refs.menu2.save(time)"></v-time-picker>
+            </v-menu>
+          </v-flex>
+          <v-spacer></v-spacer>
 
           </v-layout>
           <v-card-actions style="text-xs-right">
