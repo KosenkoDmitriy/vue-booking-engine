@@ -134,19 +134,23 @@
       </v-stepper-content>
 
       <v-stepper-content step="3">
-        <v-card
-          class="mb-5"
-          color="grey lighten-1"
-          height="200px">
-        </v-card>
-
+        <v-layout>
+          <v-flex xs-12 sm-6>
+            <h2>Booker Details</h2>
+            <booker-form></booker-form>
+          </v-flex>
+          <v-flex xs-12 sm-6>
+            <h2>On Site Contacts</h2>
+            <booker-form></booker-form>
+          </v-flex>
+        </v-layout>
         <v-btn
           color="primary"
           @click="e1 = 1">
-          Continue
+          Book And Pay
         </v-btn>
 
-        <v-btn flat>Cancel</v-btn>
+        <v-btn flat @click="e1 = 2">Back</v-btn>
       </v-stepper-content>
     </v-stepper-items>
   </v-stepper>
@@ -158,12 +162,14 @@
 import ExtraTable from './ExtraTable.vue'
 import DatePicker from './DatePicker.vue'
 import TimePicker from './TimePicker.vue'
+import BookerForm from './BookerForm.vue'
 export default {
   name: 'AppContent',
   components: {
     ExtraTable,
     DatePicker,
     TimePicker,
+    BookerForm,
   },
   methods: {
     calculateTotalSum(id, total) {
@@ -178,7 +184,7 @@ export default {
       return {
         eventList: ['Banquet', 'Cocktail', 'Conference', 'Meeting', 'Wedding'],
         buildList: [ 'Cafe', 'Theater', 'Restaurant', 'Office', 'Flat'],
-        e1: 0,
+        e1: 3,
         items: [
           // { header: 'Today' },
           {
