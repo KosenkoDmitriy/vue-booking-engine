@@ -16,7 +16,6 @@
   <v-data-table
     :headers="headers"
     :items="extras"
-    :footer="total"
     hide-actions
     class="elevation-1"
   >
@@ -30,7 +29,6 @@
       </td>
       <td class="text-xs-right">{{ props.item.name }}</td>
       <td class="text-xs-right">{{ props.item.quantity }}</td>
-      <td class="text-xs-right">{{ props.item.unit_price }}</td>
       <td class="text-xs-right">$ {{ props.item.cost }}</td>
       <td class="text-xs-right">$ {{ props.item.quantity * props.item.cost  }}</td>
     </template>
@@ -46,11 +44,7 @@
 </template>
 
 <script>
-var total = 0;
-// var id2 = 0;
-
-var isExtraVisible = false;
-
+  var total = 0;
   export default {
 
     name: "ExtraTable",
@@ -59,7 +53,7 @@ var isExtraVisible = false;
     // ],
     props: {
       isVisible: Boolean,
-      id:Number,
+      id: Number,
       // total: Number,
     },
     computed: {
@@ -87,18 +81,16 @@ var isExtraVisible = false;
     },
     data () {
       return {
-        // id2:id,
-        // total,
-        isExtraVisible,
+        isExtraVisible: false,
         headers: [
           {
-            text: 'Dessert (100g serving)',
+            text: '',
             align: 'left',
             sortable: false,
             value: 'name'
           },
-          { text: 'Quantity', value: 'calories' },
-          { text: 'Unit Price', value: 'fat' },
+          { text: 'Name', value: 'calories' },
+          { text: 'Quantity', value: 'fat' },
           { text: 'Cost', value: 'carbs' },
           { text: 'Total', value: 'protein' },
         ],

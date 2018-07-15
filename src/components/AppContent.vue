@@ -73,9 +73,9 @@
              </v-list-tile-content>
              <v-list-tile-action>
                <!-- <v-btn v-on:click="isExtraVisible = true" :color="item.active ? 'teal' : 'blue'">Hold</v-btn> -->
-               <v-list-tile-sub-title>Room Hire Cost-Half Day: $300</v-list-tile-sub-title>
-               <v-list-tile-sub-title>Extras: - </v-list-tile-sub-title>
-               <v-list-tile-title>Total: $ {{item.total}}</v-list-tile-title>
+               <v-list-tile-sub-title>Room Hire Cost/Day: $ {{ item.total }}</v-list-tile-sub-title>
+               <v-list-tile-sub-title>Extras: $ {{ item.totalExtra }} </v-list-tile-sub-title>
+               <v-list-tile-title>Total: $ {{ calculateTotalWithExtraPkg(item) }}</v-list-tile-title>
                <v-btn :color="item.active ? 'teal' : 'green'">Book And Confirm</v-btn>
             </v-list-tile-action>
            </v-list-tile>
@@ -138,10 +138,12 @@ export default {
     ExtraTable
   },
   methods: {
-    calculateTotalSum(id,total) {
+    calculateTotalSum(id, total) {
       // alert(id+' '+total);
-      this.items[id].total = total
-      // this.items.splice(0, 1, sum.toString());
+      this.items[id].totalExtra = total
+    },
+    calculateTotalWithExtraPkg(item) {
+      return item.totalExtra + item.total
     }
   },
   data () {
@@ -156,7 +158,8 @@ export default {
             avatar: './avatar.png',
             title: 'Office',
             subtitle: "<span class='text--primary'>Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?",
-            total: 0,
+            total: 300,
+            totalExtra: 0,
           },
           { divider: true, inset: true },
           {
@@ -164,7 +167,8 @@ export default {
             avatar: './avatar.png',
             title: 'Flat <span class="grey--text text--lighten-1">50</span>',
             subtitle: "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend.",
-            total: 0,
+            total: 200,
+            totalExtra: 0,
           },
           { divider: true, inset: true },
           {
@@ -172,7 +176,8 @@ export default {
             avatar: './avatar.png',
             title: 'Restaurant',
             subtitle: "<span class='text--primary'>Sandra Adams</span> &mdash; Do you have Paris recommendations? Have you ever been?",
-            total: 0,
+            total: 100,
+            totalExtra: 0,
           }
         ]
       }
