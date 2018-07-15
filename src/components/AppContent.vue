@@ -39,8 +39,8 @@
 
        <v-list three-line>
          <template v-for="(item, index) in items">
-           <extra-table
-            v-bind:isVisible=false v-on:calculateTotal="calculateTotalSum" :key="'et'+index">
+           <extra-table v-if="item.id"
+            v-bind:isVisible=false v-bind:id="index" v-on:calculateTotal="calculateTotalSum" :key="item.id">
            </extra-table>
            <v-subheader
              v-if="item.header"
@@ -52,7 +52,7 @@
            <v-divider
              v-if="item.divider"
              :inset="item.inset"
-             :key="index"
+             :key="'divider'+index"
            ></v-divider>
 
            <v-list-tile
@@ -67,17 +67,15 @@
              </v-list-tile-avatar>
 
              <v-list-tile-content>
-
                <v-list-tile-title v-html="item.title"></v-list-tile-title>
                <v-list-tile-sub-title v-html="item.subtitle"></v-list-tile-sub-title>
                <v-list-tile-sub-title v-html="item.subtitle"></v-list-tile-sub-title>
              </v-list-tile-content>
              <v-list-tile-action>
-
                <!-- <v-btn v-on:click="isExtraVisible = true" :color="item.active ? 'teal' : 'blue'">Hold</v-btn> -->
                <v-list-tile-sub-title>Room Hire Cost-Half Day: $300</v-list-tile-sub-title>
                <v-list-tile-sub-title>Extras: - </v-list-tile-sub-title>
-               <v-list-tile-title>Total: ${{total}}</v-list-tile-title>
+               <v-list-tile-title>Total: $ {{item.total}}</v-list-tile-title>
                <v-btn :color="item.active ? 'teal' : 'green'">Book And Confirm</v-btn>
             </v-list-tile-action>
            </v-list-tile>
@@ -133,43 +131,48 @@
 
 <script>
 import ExtraTable from './ExtraTable.vue'
-var total = -1;
+var total = 0;
 export default {
   name: 'AppContent',
   components: {
     ExtraTable
   },
   methods: {
-    calculateTotalSum(sum) {
-      this.total = sum;
-      // alert(sum);
+    calculateTotalSum(id,total) {
+      // alert(id+' '+total);
+      this.items[id].total = total
+      // this.items.splice(0, 1, sum.toString());
     }
   },
   data () {
       return {
-        // total,
-        total: -1,
         eventList: ['Meeting', 'Wedding'],
         buildList: ['Theater', 'Restaurant', 'Office', 'Flat'],
         e1: 0,
         items: [
           // { header: 'Today' },
           {
+            id: 1,
             avatar: './avatar.png',
             title: 'Office',
-            subtitle: "<span class='text--primary'>Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?"
+            subtitle: "<span class='text--primary'>Ali Connors</span> &mdash; I'll be in your neighborhood doing errands this weekend. Do you want to hang out?",
+            total: 0,
           },
           { divider: true, inset: true },
           {
+            id: 3,
             avatar: './avatar.png',
             title: 'Flat <span class="grey--text text--lighten-1">50</span>',
-            subtitle: "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend."
+            subtitle: "<span class='text--primary'>to Alex, Scott, Jennifer</span> &mdash; Wish I could come, but I'm out of town this weekend.",
+            total: 0,
           },
           { divider: true, inset: true },
           {
+            id: 5,
             avatar: './avatar.png',
             title: 'Restaurant',
-            subtitle: "<span class='text--primary'>Sandra Adams</span> &mdash; Do you have Paris recommendations? Have you ever been?"
+            subtitle: "<span class='text--primary'>Sandra Adams</span> &mdash; Do you have Paris recommendations? Have you ever been?",
+            total: 0,
           }
         ]
       }

@@ -11,12 +11,12 @@
         vertical
       ></v-divider>
       <v-spacer></v-spacer>
-        <v-btn v-on:click="calculateTotalSum(total)">Done</v-btn>
+        <v-btn v-on:click="calculateTotalSum(id)">Done</v-btn>
     </v-toolbar>
   <v-data-table
     :headers="headers"
     :items="extras"
-    :footer="totals"
+    :footer="total"
     hide-actions
     class="elevation-1"
   >
@@ -47,6 +47,8 @@
 
 <script>
 var total = 0;
+// var id2 = 0;
+
 var isExtraVisible = false;
 
   export default {
@@ -57,6 +59,7 @@ var isExtraVisible = false;
     // ],
     props: {
       isVisible: Boolean,
+      id:Number,
       // total: Number,
     },
     computed: {
@@ -78,14 +81,14 @@ var isExtraVisible = false;
     methods: {
       calculateTotalSum: function() {
         this.isExtraVisible = false;
-
         // генерируем событие 'calculateTotal' и передаём итоговую сумму
-        this.$emit('calculateTotal', this.total);
+        this.$emit('calculateTotal', this.id, this.total);
       }
     },
     data () {
       return {
-        total,
+        // id2:id,
+        // total,
         isExtraVisible,
         headers: [
           {
