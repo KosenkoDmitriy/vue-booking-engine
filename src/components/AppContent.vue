@@ -131,7 +131,6 @@
 
 <script>
 import ExtraTable from './ExtraTable.vue'
-var total = 0;
 export default {
   name: 'AppContent',
   components: {

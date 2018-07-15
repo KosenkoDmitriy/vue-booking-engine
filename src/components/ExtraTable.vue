@@ -44,9 +44,7 @@
 </template>
 
 <script>
-  var total = 0;
   export default {
-
     name: "ExtraTable",
     // props: [
     //   'isVisible'
@@ -54,7 +52,6 @@
     props: {
       isVisible: Boolean,
       id: Number,
-      // total: Number,
     },
     computed: {
       calcTotalSumOfSelectedExtras: function() {
@@ -82,6 +79,7 @@
     data () {
       return {
         isExtraVisible: false,
+        total: 0,
         headers: [
           {
             text: '',
@@ -101,7 +99,7 @@
             quantity: 1,
             unit_price: '-',
             cost: 300,
-            selected: true,
+            selected: false,
           },
           {
             value: false,
@@ -109,7 +107,7 @@
             quantity: 1,
             unit_price: '-',
             cost: 200,
-            selected: true,
+            selected: false,
           },
           {
             value: false,
@@ -117,7 +115,7 @@
             quantity: 10,
             unit_price: '-',
             cost: 10,
-            selected: true,
+            selected: false,
           },
           {
             value: false,
@@ -125,7 +123,7 @@
             quantity: 1,
             unit_price: '-',
             cost: 50,
-            selected: true,
+            selected: false,
           },
           {
             value: false,
@@ -133,21 +131,21 @@
             quantity: 1,
             unit_price: '-',
             cost: 50,
-            selected: true,
+            selected: false,
           },
           {
             name: 'FlipChart',
             quantity: 1,
             unit_price: '-',
             cost: 50,
-            selected: true,
+            selected: false,
           },
           {
             name: 'Whiteboard',
             quantity: 1,
             unit_price: '-',
             cost: 50,
-            selected: true,
+            selected: false,
           }
         ]
       }
