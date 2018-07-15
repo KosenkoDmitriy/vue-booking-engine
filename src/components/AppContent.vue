@@ -117,7 +117,7 @@
                   <v-list-tile-sub-title>Room Hire Cost/Day: $ {{ item.total }}</v-list-tile-sub-title>
                   <v-list-tile-sub-title>Extras: $ {{ item.totalExtra }} </v-list-tile-sub-title>
                   <v-list-tile-title>Total: $ {{ calculateTotalWithExtraPkg(item) }}</v-list-tile-title>
-                  <v-btn v-on:click="e1 = 3" :color="item.active ? 'teal' : 'green'">Book And Confirm</v-btn>
+                  <v-btn v-on:click="e1 = 3" :color="item.active ? 'teal' : 'green'">Book And Pay</v-btn>
                 </v-list-tile-action>
               </v-list-tile>
             </template>
@@ -184,7 +184,7 @@ export default {
       return {
         eventList: ['Banquet', 'Cocktail', 'Conference', 'Meeting', 'Wedding'],
         buildList: [ 'Cafe', 'Theater', 'Restaurant', 'Office', 'Flat'],
-        e1: 3,
+        e1: 0,
         items: [
           // { header: 'Today' },
           {

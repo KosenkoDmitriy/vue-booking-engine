@@ -20,7 +20,7 @@
       required
     ></v-text-field>
     <v-text-field
-      v-model="phoneHome"
+      v-model="phoneMobile"
       :rules="phoneRules"
       label="Phone Number - Mobile"
       required
@@ -29,7 +29,7 @@
       v-model="address"
       :rules="addressRules"
       label="Address Line"
-      required
+      required="true"
     ></v-text-field>
     <!-- <v-select
       v-model="select"
@@ -66,6 +66,9 @@
           v => (v && v.length <= 10) || 'Name must be less than 10 characters'
         ],
         email: '',
+        phoneMobile: '',
+        phoneHome: '',
+        address: '',
         emailRules: [
           v => !!v || 'E-mail is required',
           v => /.+@.+/.test(v) || 'E-mail must be valid'
@@ -87,7 +90,10 @@
             axios.post('/api/submit', {
               name: this.name,
               email: this.email,
-              select: this.select,
+              // select: this.select,
+              phoneMobile: this.phoneMobile,
+              phoneHome: this.phoneHome,
+              address: this.address,
               checkbox: this.checkbox
             })
           }
