@@ -37,7 +37,7 @@
             </v-flex>
           </v-layout>
 
-       <v-list three-line>
+       <v-list three-line class="itemList">
          <template v-for="(item, index) in items">
            <extra-table v-if="item.id"
             v-bind:isVisible=false v-bind:id="index" v-on:calculateTotal="calculateTotalSum" :key="item.id">
@@ -185,17 +185,17 @@ export default {
 }
 </script>
 <style>
-.v-list__tile {
+.itemList .v-list__tile {
   height: 180px !important;
 }
-.v-avatar {
+.itemList .v-avatar {
   width: 160px !important;
   height: 160px !important;
 }
-.v-avatar img {
+.itemList .v-avatar img {
   border-radius: 5%;
 }
-.v-list__tile__content {
+.itemList .v-list__tile__content {
     padding-left: 85px;
 }
 </style>
