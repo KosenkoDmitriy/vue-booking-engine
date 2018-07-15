@@ -13,13 +13,30 @@
       label="E-mail"
       required
     ></v-text-field>
-    <v-select
+    <v-text-field
+      v-model="phoneHome"
+      :rules="phoneRules"
+      label="Phone Number - Home"
+      required
+    ></v-text-field>
+    <v-text-field
+      v-model="phoneHome"
+      :rules="phoneRules"
+      label="Phone Number - Mobile"
+      required
+    ></v-text-field>
+    <v-text-field
+      v-model="address"
+      :rules="addressRules"
+      label="Address Line"
+      required
+    ></v-text-field>
+    <!-- <v-select
       v-model="select"
       :items="items"
-      :rules="[v => !!v || 'Item is required']"
-      label="Item"
-      required
-    ></v-select>
+      :rules="[v => !!v || 'Country is required']"
+      label="Country"
+    ></v-select> -->
     <v-checkbox
       v-model="checkbox"
       :rules="[v => !!v || 'You must agree to continue!']"
@@ -55,10 +72,10 @@
         ],
         select: null,
         items: [
-          'Item 1',
-          'Item 2',
-          'Item 3',
-          'Item 4'
+          'Country 1',
+          'Country 2',
+          'Country 3',
+          'Country 4'
         ],
         checkbox: false
       }),
