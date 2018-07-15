@@ -142,7 +142,7 @@ export default {
   methods: {
     calculateTotalSum(sum) {
       this.total = sum;
-      alert(sum);
+      // alert(sum);
     }
   },
   data () {
